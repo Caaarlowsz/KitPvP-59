@@ -1,7 +1,7 @@
 name: KitPvP
 author: TheJulix
 version: 4.0
-main: fr.thejulix.kitpvp.Main
+main: fr.moderncraft.kitpvp.Main
 commands: 
   kitpvp:
       description: Affiche les commandes possibles du Plugin KitPvP
