@@ -1,5 +1,0 @@
-mysql:
-  url: localhost
-  user: admin
-  password: 123
-  bdd: kitpvp

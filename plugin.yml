@@ -1,24 +1,3 @@
-name: KitPvP
-author: TheJulix
-version: 4.0
-main: fr.moderncraft.kitpvp.Main
-commands: 
-  kitpvp:
-      description: Affiche les commandes possibles du Plugin KitPvP
-  st:
-      description : Channel Staff
-  stats:
-      description : Connaitre les stats de joueurs
-  addeco:
-      descriptopn : Achat pour boutique - Aliase /kitpvp addeco.
-permission:
-  kitpvp.vipp
-  kitpvp.vip
-  kitpvp.admin
-  kitpvp.st.send
-  kitpvp.st.receive
-  kitpvp.statsother
-  kitpvp.modo
-  kitpvp.map
-  kitpvp.vanishcon
-
+name: Kitpvp
+main: fr.moderncraft.main.Main
+version:1.0
