@@ -1,4 +1,4 @@
-package fr.thejulix.kitpvp;
+package fr.moderncraft.kitpvp;
 
 public class MySQL {
 	
