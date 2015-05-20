@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class Potion {
 
@@ -19,7 +20,6 @@ public class Potion {
 	}
 	
 	public Potion(String name,int amount,PotionEffect pe){
-		this.name = name;
 		this.potion = new ItemStack(Material.POTION, amount);
 		this.meta = (PotionMeta) potion.getItemMeta();
 		this.meta.setDisplayName(name);
