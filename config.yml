@@ -2,3 +2,65 @@ url: "localhost"
 user: "root"
 passw: ""
 bdd: "kitpvp"
+
+potions:
+  potion1:
+    name: "Spécialité de Moderncraft"
+    effect: "HEAL"
+    duration: 1
+    level: 1
+    
+kits:
+  kit1:
+    name: "Kit 1"
+    price: 100
+    ranklevel: 1
+    helmet:
+      id: 310
+      enchants:
+        enchant1:
+          effect: "PROTECTION_ENVIRONMENTAL"
+          level: 5
+        enchant2:
+          effect: "DURABILITY"
+          level: 2
+      chestplate:
+        id: 311
+        enchants:
+          enchant1:
+            effect: "PROTECTION_ENVIRONMENTAL"
+            level: 5
+          enchant2:
+            effect: "DURABILITY"
+            level: 2
+      leggings:
+        id: 312
+        enchants:
+          enchant1:
+            effect: "PROTECTION_ENVIRONMENTAL"
+            level: 5
+          enchant2:
+            effect: "DURABILITY"
+            level: 2
+      boots:
+        id: 313
+        enchants:
+          enchant1:
+            effect: "PROTECTION_ENVIRONMENTAL"
+            level: 5
+          enchant2:
+            effect: "DURABILITY"
+            level: 2
+      items:
+        item1:
+          id: 5
+          amount: 10
+        item2:
+          id: 10
+          amount: 5
+      potions:
+        potion1:
+          id: 1
+          amount: 10
+    
+    

@@ -11,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 public class Kit {
 
 	private String name;
+	private double price;
+	private int rankLevel;
 	private ItemStack helmet;
 	private ItemStack chestplate;
 	private ItemStack leggings;
@@ -18,13 +20,17 @@ public class Kit {
 	private HashSet<ItemStack> inventory;
 	
 	
-	public Kit(String name){
+	public Kit(String name,double price,int rankLevel){
 		this.name = name; 
+		this.price = price;
+		this.rankLevel = rankLevel;
 		this.inventory = new HashSet<ItemStack>();
 	}
 	
-	public Kit(String name, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots){
+	public Kit(String name, double price, int rankLevel, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots){
 		this.name = name;
+		this.price = price;
+		this.rankLevel = rankLevel;
 		this.helmet = helmet;
 		this.chestplate = chestplate;
 		this.leggings = leggings;
@@ -48,32 +54,40 @@ public class Kit {
 	public String getName(){
 		return name;
 	}
+	public double getPrice() {
+		return price;
+	}
+
+	public int getRankLevel() {
+		return rankLevel;
+	}
+
 	public HashSet<ItemStack> getInventory(){
 		return inventory;
 	}
 	
-	private void setHelmet(ItemStack helmet) {
+	public void setHelmet(ItemStack helmet) {
 		this.helmet = helmet;
 	}
 	public void setHelmetEnchant(Enchantment e,int level){
 		getHelmet().addUnsafeEnchantment(e, level);
 	}
 	
-	private void setChestplate(ItemStack chestplate) {
+	public void setChestplate(ItemStack chestplate) {
 		this.chestplate = chestplate;
 	}
 	public void setChestplateEnchant(Enchantment e,int level){
 		getChestplate().addUnsafeEnchantment(e, level);
 	}
 	
-	private void setLeggings(ItemStack leggings) {
+	public void setLeggings(ItemStack leggings) {
 		this.leggings = leggings;
 	}
 	public void setLeggingsEnchant(Enchantment e,int level){
 		getLeggings().addUnsafeEnchantment(e, level);
 	}
 	
-	private void setBoots(ItemStack boots) {
+	public void setBoots(ItemStack boots) {
 		this.boots = boots;
 	}
 	public void setBootsEnchant(Enchantment e,int level){

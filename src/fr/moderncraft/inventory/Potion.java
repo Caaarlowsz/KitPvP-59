@@ -12,15 +12,15 @@ public class Potion {
 	private PotionMeta meta;
 	private String name;
 	
-	public Potion(String name,int amount){
+	public Potion(String name){
 		this.name = name;
-		this.potion = new ItemStack(Material.POTION, amount);
+		this.potion = new ItemStack(Material.POTION, 1);
 		this.meta = (PotionMeta) potion.getItemMeta();
 		this.meta.setDisplayName(name);
 	}
 	
-	public Potion(String name,int amount,PotionEffect pe){
-		this.potion = new ItemStack(Material.POTION, amount);
+	public Potion(String name,PotionEffect pe){
+		this.potion = new ItemStack(Material.POTION, 1);
 		this.meta = (PotionMeta) potion.getItemMeta();
 		this.meta.setDisplayName(name);
 		setPotionEffect(pe);
