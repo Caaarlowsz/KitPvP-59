@@ -12,10 +12,12 @@ import fr.moderncraft.inventory.Kit;
 
 public class Config_Kit {
 	private FileConfiguration config;
+	private Config config_obj;
 	private HashSet<Kit> kitList;
 	
-	public Config_Kit(FileConfiguration config){
-		this.config = config;
+	public Config_Kit(Config config){
+		this.config = config.getFileConfig();
+		this.config_obj = config;
 		kitList = createKits();
 	}
 	
@@ -33,7 +35,7 @@ public class Config_Kit {
 			j = 1;
 			while(config.isSet(suf+".helmet.enchants.enchant"+j)){
 				sufEnch = suf+".helmet.enchants.enchant"+j;
-				kit.setHelmetEnchant(EnchantmentWrapper.getByName(config.getString(suf+".effect")), config.getInt(suf+".level"));
+				kit.setHelmetEnchant(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
 				j++;
 			}
 			ItemStack chestplate = new ItemStack(Material.getMaterial(config.getInt(suf+".chestplate.id")));
@@ -41,7 +43,7 @@ public class Config_Kit {
 			j = 1;
 			while(config.isSet(suf+".chestplate.enchants.enchant"+j)){
 				sufEnch = suf+".chestplate.enchants.enchant"+j;
-				kit.setChestplateEnchant(EnchantmentWrapper.getByName(config.getString(suf+".effect")), config.getInt(suf+".level"));
+				kit.setChestplateEnchant(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
 				j++;
 			}
 			ItemStack leggings = new ItemStack(Material.getMaterial(config.getInt(suf+".leggings.id")));
@@ -49,7 +51,7 @@ public class Config_Kit {
 			j = 1;
 			while(config.isSet(suf+".leggings.enchants.enchant"+j)){
 				sufEnch = suf+".leggings.enchants.enchant"+j;
-				kit.setLeggingsEnchant(EnchantmentWrapper.getByName(config.getString(suf+".effect")), config.getInt(suf+".level"));
+				kit.setLeggingsEnchant(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
 				j++;
 			}
 			ItemStack boots = new ItemStack(Material.getMaterial(config.getInt(suf+".boots.id")));
@@ -57,9 +59,33 @@ public class Config_Kit {
 			j = 1;
 			while(config.isSet(suf+".boots.enchants.enchant"+j)){
 				sufEnch = suf+".boots.enchants.enchant"+j;
-				kit.setBootsEnchant(EnchantmentWrapper.getByName(config.getString(suf+".effect")), config.getInt(suf+".level"));
+				kit.setBootsEnchant(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
 				j++;
 			}
+			j = 1;
+			ItemStack item;
+			while(config.isSet(suf+".potions.potion"+j)){
+				sufEnch = suf+".potions.potion"+j;
+				item = config_obj.getConfigPotion().getPotion(config.getInt(sufEnch+".id"));
+				item.setAmount(config.getInt(sufEnch+".amount"));
+				kit.addItem(item);
+				j++;
+			}
+			j = 1;
+			int k;
+			String sufItem;
+			while(config.isSet(suf+".items.item"+j)){
+				sufItem = suf+".items.item"+j;
+				item = new ItemStack(config.getInt(sufItem+".id"), config.getInt(sufItem+".amount"));
+				k = 1;
+				while(config.isSet(sufItem+".enchants.enchant"+k)){
+					sufEnch = sufItem+".enchants.enchant"+k;
+					item.addEnchantment(EnchantmentWrapper.getByName(config.getString(sufEnch+".name")), config.getInt(sufEnch+".level"));
+				}
+				kit.addItem(item);
+			}
+			
+			
 		}
 		return kits;
 	}

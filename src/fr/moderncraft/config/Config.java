@@ -18,7 +18,7 @@ public class Config {
 		}
 		fileConfig = this.main.getConfig();
 		configPotion = new Config_Potion(this.getFileConfig());
-		configKit = new Config_Kit(this.fileConfig);
+		configKit = new Config_Kit(this);
 	}
 	
 	public String getUrl(){
@@ -43,5 +43,9 @@ public class Config {
 	
 	public FileConfiguration getFileConfig(){
 		return fileConfig;
+	}
+	
+	public Config_Potion getConfigPotion(){
+		return configPotion;
 	}
 }

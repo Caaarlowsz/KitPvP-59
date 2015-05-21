@@ -108,6 +108,10 @@ public class Kit {
 		}
 	}
 	
+	public void addItem(ItemStack item){
+		this.getInventory().add(item);
+	}
+	
 	
 	
 	

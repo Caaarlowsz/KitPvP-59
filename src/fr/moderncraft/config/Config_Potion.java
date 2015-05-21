@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionEffectTypeWrapper;
@@ -34,9 +35,9 @@ public class Config_Potion {
 		return potions;
 	}
 	
-	public Potion getPotion(int id){
+	public ItemStack getPotion(int id){
 		if(potionsList.get(id-1) != null){
-			return potionsList.get(id-1);
+			return potionsList.get(id-1).getPotion();
 		}
 		return null;
 	}
