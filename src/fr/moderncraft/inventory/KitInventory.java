@@ -12,7 +12,7 @@ import org.bukkit.inventory.Inventory;
 
 import fr.moderncraft.main.Main;
 
-public class KitInventory implements Listener{
+public class KitInventory{
 	
 	private Inventory inventory;
 	private Main main;
@@ -27,6 +27,10 @@ public class KitInventory implements Listener{
 		for (Kit kit : main.getConfiguration().getConfigKit().getKitList()) {
 			this.inventory.setItem(kit.getInvSlot(), kit.getLogoItem());
 		}
+	}
+	
+	public Inventory getInventory(){
+		return inventory;
 	}
 
 }

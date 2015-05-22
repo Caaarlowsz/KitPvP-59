@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 public class Plugin_Listener implements Listener{
 	private Main main;
@@ -21,11 +22,24 @@ public class Plugin_Listener implements Listener{
 			Player player = (Player) e.getWhoClicked();
 			if(e.getInventory().getType() == InventoryType.PLAYER){
 				if(e.isLeftClick() || e.isRightClick()){
-					if(e.getCurrentItem().getType() == Material.CHEST){
-						player.openInventory(main.get);
+					if(e.getCurrentItem() == main.getConfiguration().getKitItem()){
+						player.openInventory(main.getKitInventory().getInventory());
 					}
 				}
 			}
 		}
+	}
+	
+	@EventHandler
+	public void onPlayerConnect(PlayerJoinEvent e){
+		Player player = e.getPlayer();
+		player.teleport(player.getLocation().getWorld().getSpawnLocation());
+		clearInventory(player);
+		player.getInventory().addItem(main.getConfiguration().getKitItem());
+	}
+	
+	private void clearInventory(Player p){
+		p.getInventory().clear();
+		p.getInventory().setArmorContents(null);
 	}
 }

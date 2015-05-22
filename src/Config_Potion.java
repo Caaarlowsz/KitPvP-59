@@ -1,4 +1,4 @@
-package fr.moderncraft.config;
+
 
 import java.awt.List;
 import java.util.ArrayList;

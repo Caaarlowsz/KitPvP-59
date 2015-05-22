@@ -1,6 +1,8 @@
 package fr.moderncraft.config;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.ItemStack;
 
 import fr.moderncraft.main.Main;
 
@@ -10,15 +12,18 @@ public class Config {
 	private FileConfiguration fileConfig;
 	private Config_Kit configKit;
 	private Config_Potion configPotion;
+	private ItemStack kitItem;
 	
 	public Config(Main main){
 		this.main = main;
-		if(this.main.getConfig() == null){
-			this.main.saveDefaultConfig();
-		}
+		this.main.saveDefaultConfig();
 		fileConfig = this.main.getConfig();
 		configPotion = new Config_Potion(this.getFileConfig());
 		configKit = new Config_Kit(this);
+		ItemStack item = new ItemStack(Material.getMaterial(fileConfig.getInt("kititem.id")));
+		item.getItemMeta().setDisplayName(fileConfig.getString("kititem.name"));
+		this.kitItem = item;
+		System.out.print("test");
 	}
 	
 	public String getUrl(){
@@ -47,5 +52,9 @@ public class Config {
 	
 	public Config_Potion getConfigPotion(){
 		return configPotion;
+	}
+	
+	public ItemStack getKitItem(){
+		return kitItem;
 	}
 }

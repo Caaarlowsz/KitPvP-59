@@ -10,6 +10,10 @@ potions:
     duration: 1
     level: 1
     
+kititem:
+  name: "Choisir un kit"
+  id: 5
+    
 kits:
   kit1:
     name: "Kit 1"

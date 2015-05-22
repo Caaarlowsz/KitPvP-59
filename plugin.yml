@@ -1,3 +1,6 @@
 name: Kitpvp
 main: fr.moderncraft.main.Main
-version:1.0
+version: 1.0
+commands:
+  kitpvp:
+    description: efzfzefz

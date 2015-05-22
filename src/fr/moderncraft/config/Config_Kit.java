@@ -35,7 +35,7 @@ public class Config_Kit {
 			j = 1;
 			while(config.isSet(suf+".logoItem.enchants.enchant"+j)){
 				sufEnch = suf+".logoItem.enchants.enchant"+j;
-				logo.addEnchantment(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
+				logo.addUnsafeEnchantment(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
 				j++;
 			}
 			kit.setLogoItem(logo);
@@ -89,12 +89,14 @@ public class Config_Kit {
 				k = 1;
 				while(config.isSet(sufItem+".enchants.enchant"+k)){
 					sufEnch = sufItem+".enchants.enchant"+k;
-					item.addEnchantment(EnchantmentWrapper.getByName(config.getString(sufEnch+".name")), config.getInt(sufEnch+".level"));
+					item.addUnsafeEnchantment(EnchantmentWrapper.getByName(config.getString(sufEnch+".name")), config.getInt(sufEnch+".level"));
+					k++;
 				}
 				kit.addItem(item);
+				j++;
 			}
-			
-			
+			kits.add(kit);
+			i++;
 		}
 		return kits;
 	}
