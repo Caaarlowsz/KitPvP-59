@@ -13,6 +13,8 @@ public class Kit {
 	private String name;
 	private double price;
 	private int rankLevel;
+	private int invSlot;
+	private ItemStack logoItem;
 	private ItemStack helmet;
 	private ItemStack chestplate;
 	private ItemStack leggings;
@@ -20,14 +22,15 @@ public class Kit {
 	private HashSet<ItemStack> inventory;
 	
 	
-	public Kit(String name,double price,int rankLevel){
+	public Kit(String name,double price,int rankLevel,int invSlot){
 		this.name = name; 
 		this.price = price;
 		this.rankLevel = rankLevel;
+		this.invSlot = invSlot;
 		this.inventory = new HashSet<ItemStack>();
 	}
 	
-	public Kit(String name, double price, int rankLevel, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots){
+	public Kit(String name, double price, int rankLevel,int invSlot,ItemStack logoItem, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots){
 		this.name = name;
 		this.price = price;
 		this.rankLevel = rankLevel;
@@ -35,6 +38,8 @@ public class Kit {
 		this.chestplate = chestplate;
 		this.leggings = leggings;
 		this.boots = boots;
+		this.logoItem = logoItem;
+		this.invSlot = invSlot;
 		this.inventory = new HashSet<ItemStack>();
 	}
 	
@@ -65,6 +70,23 @@ public class Kit {
 	public HashSet<ItemStack> getInventory(){
 		return inventory;
 	}
+	
+	public int getInvSlot() {
+		return invSlot;
+	}
+
+	public void setInvSlot(int invSlot) {
+		this.invSlot = invSlot;
+	}
+
+	public ItemStack getLogoItem() {
+		return logoItem;
+	}
+
+	public void setLogoItem(ItemStack logoItem) {
+		this.logoItem = logoItem;
+	}
+
 	
 	public void setHelmet(ItemStack helmet) {
 		this.helmet = helmet;

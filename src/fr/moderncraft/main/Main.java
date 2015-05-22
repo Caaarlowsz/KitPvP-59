@@ -36,4 +36,8 @@ public class Main extends JavaPlugin{
 	
 		return false;
 	}
+	
+	public Config getConfiguration(){
+		return config;
+	}
 }

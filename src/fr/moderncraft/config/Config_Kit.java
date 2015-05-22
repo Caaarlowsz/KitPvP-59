@@ -1,5 +1,6 @@
 package fr.moderncraft.config;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.bukkit.Material;
@@ -13,7 +14,7 @@ import fr.moderncraft.inventory.Kit;
 public class Config_Kit {
 	private FileConfiguration config;
 	private Config config_obj;
-	private HashSet<Kit> kitList;
+	private ArrayList<Kit> kitList;
 	
 	public Config_Kit(Config config){
 		this.config = config.getFileConfig();
@@ -21,15 +22,23 @@ public class Config_Kit {
 		kitList = createKits();
 	}
 	
-	private HashSet<Kit> createKits(){
-		HashSet<Kit> kits = new HashSet<Kit>();
+	private ArrayList<Kit> createKits(){
+		ArrayList<Kit> kits = new ArrayList<Kit>();
 		int i = 1;
 		int j = 1;
 		String suf,sufEnch;
 		Kit kit;
 		while(config.isSet("kits.kit"+i)){
 			suf = "kits.kit"+i; 
-			kit = new Kit(config.getString(suf+".name"), config.getDouble(suf+".price"), config.getInt(suf+".ranklevel"));
+			kit = new Kit(config.getString(suf+".name"), config.getDouble(suf+".price"), config.getInt(suf+".ranklevel"), config.getInt(suf+".invSlot"));
+			ItemStack logo = new ItemStack(Material.getMaterial(config.getInt(suf+".logoItem.id")));
+			j = 1;
+			while(config.isSet(suf+".logoItem.enchants.enchant"+j)){
+				sufEnch = suf+".logoItem.enchants.enchant"+j;
+				logo.addEnchantment(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
+				j++;
+			}
+			kit.setLogoItem(logo);
 			ItemStack helmet = new ItemStack(Material.getMaterial(config.getInt(suf+".helmet.id")));
 			kit.setHelmet(helmet);
 			j = 1;
@@ -89,5 +98,11 @@ public class Config_Kit {
 		}
 		return kits;
 	}
+
+	public ArrayList<Kit> getKitList() {
+		return kitList;
+	}
+	
+	
 	
 }

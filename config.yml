@@ -15,6 +15,16 @@ kits:
     name: "Kit 1"
     price: 100
     ranklevel: 1
+    invSlot: 0
+    logoItem:
+      id: 310
+      enchants:
+        enchant1:
+          effect: "PROTECTION_ENVIRONMENTAL"
+          level: 5
+        enchant2:
+          effect: "DURABILITY"
+          level: 2
     helmet:
       id: 310
       enchants:
