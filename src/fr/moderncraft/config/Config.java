@@ -1,8 +1,13 @@
 package fr.moderncraft.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.moderncraft.main.Main;
 
@@ -18,12 +23,18 @@ public class Config {
 		this.main = main;
 		this.main.saveDefaultConfig();
 		fileConfig = this.main.getConfig();
-		configPotion = new Config_Potion(this.getFileConfig());
+		configPotion = new Config_Potion(this);
 		configKit = new Config_Kit(this);
-		ItemStack item = new ItemStack(Material.getMaterial(fileConfig.getInt("kititem.id")));
-		item.getItemMeta().setDisplayName(fileConfig.getString("kititem.name"));
+		ItemStack item = new ItemStack(Material.getMaterial(fileConfig.getInt("kititem.id")),1);
+		ItemMeta meta = item.getItemMeta();
+		meta.setDisplayName(ChatColor.translateAlternateColorCodes('$',(fileConfig.getString("kititem.name"))));
+		if(fileConfig.isSet("kititem.description")){
+			ArrayList<String> list = new ArrayList<String>();
+			list.add(ChatColor.translateAlternateColorCodes('$',(fileConfig.getString("kititem.description"))));
+			meta.setLore(list);
+		}
+		item.setItemMeta(meta);
 		this.kitItem = item;
-		System.out.print("test");
 	}
 	
 	public String getUrl(){
@@ -56,5 +67,9 @@ public class Config {
 	
 	public ItemStack getKitItem(){
 		return kitItem;
+	}
+	
+	public Main getMain(){
+		return main;
 	}
 }

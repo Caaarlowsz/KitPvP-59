@@ -14,18 +14,19 @@ import fr.moderncraft.main.Main;
 
 public class KitInventory{
 	
-	private Inventory inventory;
+	private static Inventory inventory;
 	private Main main;
 	
 	public KitInventory(Main main){
 		super();
 		this.main = main;
-		this.inventory = Bukkit.createInventory(null, 54, "Choisissez votre kit");
+		KitInventory.inventory = Bukkit.createInventory(null, 54, "Choisissez votre kit");
+		this.setKits();
 	}
 	
 	private void setKits(){
 		for (Kit kit : main.getConfiguration().getConfigKit().getKitList()) {
-			this.inventory.setItem(kit.getInvSlot(), kit.getLogoItem());
+			KitInventory.inventory.setItem(kit.getInvSlot(), kit.getLogoItem());
 		}
 	}
 	

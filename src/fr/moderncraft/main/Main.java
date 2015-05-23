@@ -2,6 +2,7 @@ package fr.moderncraft.main;
 
 import java.sql.Connection;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -62,4 +63,5 @@ public class Main extends JavaPlugin{
 	public KitInventory getKitInventory() {
 		return kitInventory;
 	}
+	
 }

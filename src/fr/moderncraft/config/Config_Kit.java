@@ -3,6 +3,7 @@ package fr.moderncraft.config;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -30,9 +31,11 @@ public class Config_Kit {
 		Kit kit;
 		while(config.isSet("kits.kit"+i)){
 			suf = "kits.kit"+i; 
-			kit = new Kit(config.getString(suf+".name"), config.getDouble(suf+".price"), config.getInt(suf+".ranklevel"), config.getInt(suf+".invSlot"));
+			kit = new Kit(ChatColor.translateAlternateColorCodes('$',config.getString(suf+".name")), config.getDouble(suf+".price"), config.getInt(suf+".ranklevel"), config.getInt(suf+".invSlot"));
 			ItemStack logo = new ItemStack(Material.getMaterial(config.getInt(suf+".logoItem.id")));
 			j = 1;
+			if(config.isSet(suf+".description"))
+				kit.setDescription(ChatColor.translateAlternateColorCodes('$', config.getString(suf+".description")));
 			while(config.isSet(suf+".logoItem.enchants.enchant"+j)){
 				sufEnch = suf+".logoItem.enchants.enchant"+j;
 				logo.addUnsafeEnchantment(EnchantmentWrapper.getByName(config.getString(sufEnch+".effect")), config.getInt(sufEnch+".level"));
@@ -103,6 +106,15 @@ public class Config_Kit {
 
 	public ArrayList<Kit> getKitList() {
 		return kitList;
+	}
+
+	public Kit searchKit(ItemStack is) {
+		for(Kit kit: kitList){
+			if(kit.getLogoItem().equals(is)){
+				return kit;
+			}
+		}
+		return null;
 	}
 	
 	

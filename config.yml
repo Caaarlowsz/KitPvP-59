@@ -1,22 +1,24 @@
-url: "localhost"
-user: "root"
-passw: ""
-bdd: "kitpvp"
+url: localhost
+user: root
+passw: 
+bdd: kitpvp
 
 potions:
   potion1:
-    name: "Spécialité de Moderncraft"
-    effect: "HEAL"
+    name: Spécialité de Moderncraft
+    description: C'est la spécialité de Moderncraft
+    effect: HEAL
     duration: 1
     level: 1
     
 kititem:
-  name: "Choisir un kit"
-  id: 5
+  name: $5Choisir un $3kit
+  id: 54
     
 kits:
   kit1:
-    name: "Kit 1"
+    name: Kit 1
+    description: Premier kit
     price: 100
     ranklevel: 1
     invSlot: 0
@@ -24,57 +26,57 @@ kits:
       id: 310
       enchants:
         enchant1:
-          effect: "PROTECTION_ENVIRONMENTAL"
+          effect: PROTECTION_ENVIRONMENTAL
           level: 5
         enchant2:
-          effect: "DURABILITY"
+          effect: DURABILITY
           level: 2
     helmet:
       id: 310
       enchants:
         enchant1:
-          effect: "PROTECTION_ENVIRONMENTAL"
+          effect: PROTECTION_ENVIRONMENTAL
           level: 5
         enchant2:
-          effect: "DURABILITY"
+          effect: DURABILITY
           level: 2
-      chestplate:
-        id: 311
-        enchants:
-          enchant1:
-            effect: "PROTECTION_ENVIRONMENTAL"
-            level: 5
-          enchant2:
-            effect: "DURABILITY"
-            level: 2
-      leggings:
-        id: 312
-        enchants:
-          enchant1:
-            effect: "PROTECTION_ENVIRONMENTAL"
-            level: 5
-          enchant2:
-            effect: "DURABILITY"
-            level: 2
-      boots:
-        id: 313
-        enchants:
-          enchant1:
-            effect: "PROTECTION_ENVIRONMENTAL"
-            level: 5
-          enchant2:
-            effect: "DURABILITY"
-            level: 2
-      items:
-        item1:
-          id: 5
-          amount: 10
-        item2:
-          id: 10
-          amount: 5
-      potions:
-        potion1:
-          id: 1
-          amount: 10
+    chestplate:
+      id: 311
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    leggings:
+      id: 312
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    boots:
+      id: 313
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    items:
+      item1:
+        id: 5
+        amount: 10
+      item2:
+        id: 10
+        amount: 5
+    potions:
+      potion1:
+        id: 1
+        amount: 10
     
     

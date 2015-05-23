@@ -1,16 +1,22 @@
 package fr.moderncraft.inventory;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Kit {
 
 	private String name;
+	private String description;
 	private double price;
 	private int rankLevel;
 	private int invSlot;
@@ -30,15 +36,16 @@ public class Kit {
 		this.inventory = new HashSet<ItemStack>();
 	}
 	
-	public Kit(String name, double price, int rankLevel,int invSlot,ItemStack logoItem, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots){
+	public Kit(String name,String description, double price, int rankLevel,int invSlot,ItemStack logoItem, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots){
 		this.name = name;
+		this.description = description;
 		this.price = price;
 		this.rankLevel = rankLevel;
 		this.helmet = helmet;
 		this.chestplate = chestplate;
 		this.leggings = leggings;
-		this.boots = boots;
-		this.logoItem = logoItem;
+		this.boots = boots; 
+		setLogoItem(logoItem);
 		this.invSlot = invSlot;
 		this.inventory = new HashSet<ItemStack>();
 	}
@@ -62,6 +69,12 @@ public class Kit {
 	public double getPrice() {
 		return price;
 	}
+	
+	public ArrayList<String> getDescription(){
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(description);
+		return list;
+	}
 
 	public int getRankLevel() {
 		return rankLevel;
@@ -84,6 +97,12 @@ public class Kit {
 	}
 
 	public void setLogoItem(ItemStack logoItem) {
+		ItemMeta meta = logoItem.getItemMeta();
+		if(description != null){
+			meta.setLore(getDescription());
+		}
+			meta.setDisplayName(getName());
+		logoItem.setItemMeta(meta);
 		this.logoItem = logoItem;
 	}
 
@@ -120,7 +139,16 @@ public class Kit {
 		this.name = name;
 	}
 	
+	public void setDescription(String des){
+		this.description = des;
+	}
+	
 	public void equipPlayer(Player player){
+		player.getInventory().setHelmet(null);
+		player.getInventory().setChestplate(null);
+		player.getInventory().setLeggings(null);
+		player.getInventory().setBoots(null);
+		player.getInventory().clear();
 		player.getInventory().setHelmet(getHelmet());
 		player.getInventory().setChestplate(getChestplate());
 		player.getInventory().setLeggings(getLeggings());

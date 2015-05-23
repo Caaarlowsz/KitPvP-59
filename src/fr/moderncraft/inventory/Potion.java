@@ -1,5 +1,7 @@
 package fr.moderncraft.inventory;
 
+import java.util.ArrayList;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -11,6 +13,7 @@ public class Potion {
 	private ItemStack potion;
 	private PotionMeta meta;
 	private String name;
+	private String description;
 	
 	public Potion(String name){
 		this.name = name;
@@ -42,6 +45,12 @@ public class Potion {
 	public void setPotionEffect(PotionEffect pe){
 		getMeta().addCustomEffect(pe, true);
 		getMeta().setMainEffect(pe.getType());
+	}
+	
+	public void setDescription(String des){
+		ArrayList<String> ar = new ArrayList<String>();
+		ar.add(des);
+		meta.setLore(ar);
 	}
 	
 }
