@@ -46,7 +46,10 @@ public class Config {
 	}
 	
 	public String getPassw(){
-		return fileConfig.getString("passw");
+		if(fileConfig.getString("passw") != null)
+			return fileConfig.getString("passw");
+		else
+			return "";
 	}
 	
 	public String getBdd(){

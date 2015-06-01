@@ -22,11 +22,18 @@ public class KitInventory{
 		this.main = main;
 		KitInventory.inventory = Bukkit.createInventory(null, 54, "Choisissez votre kit");
 		this.setKits();
+		this.setNonKitItems();
 	}
 	
 	private void setKits(){
 		for (Kit kit : main.getConfiguration().getConfigKit().getKitList()) {
 			KitInventory.inventory.setItem(kit.getInvSlot(), kit.getLogoItem());
+		}
+	}
+	
+	private void setNonKitItems(){
+		for (NonKitItem item : main.getConfiguration().getConfigKit().getNonKitItemList()) {
+			KitInventory.inventory.setItem(item.getInvSlot(), item.getItem());
 		}
 	}
 	

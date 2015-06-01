@@ -1,6 +1,8 @@
 package fr.moderncraft.main;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -15,6 +17,7 @@ import org.bukkit.potion.PotionEffectTypeWrapper;
 import fr.moderncraft.config.Config;
 import fr.moderncraft.inventory.Kit;
 import fr.moderncraft.inventory.KitInventory;
+import fr.moderncraft.inventory.SpecialObject;
 import fr.moderncraft.sql.Main_Sql;
 
 public class Main extends JavaPlugin{
@@ -23,14 +26,16 @@ public class Main extends JavaPlugin{
 	private Main_Sql sql;
 	private Config config;
 	private KitInventory kitInventory;
+	private SpecialObject specialObject;
 
 	@Override
 	public void onEnable(){
+		this.specialObject = new SpecialObject();
 		this.config = new Config(this);
 		listener = new Plugin_Listener(this);
 		this.getServer().getPluginManager().registerEvents(listener, this);
 		this.kitInventory = new KitInventory(this);
-		//sql = new Main_Sql(config.getUrl(), config.getUser(), config.getPassw(),config.getBdd());
+		sql = new Main_Sql("localhost", "root", "","kitpvp");
 	}
 
 	@Override
@@ -63,5 +68,12 @@ public class Main extends JavaPlugin{
 	public KitInventory getKitInventory() {
 		return kitInventory;
 	}
-	
+
+	public SpecialObject getSpecialObject() {
+		return specialObject;
+	}
+
+	public Main_Sql getSql() {
+		return sql;
+	}
 }

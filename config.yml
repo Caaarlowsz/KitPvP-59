@@ -74,9 +74,80 @@ kits:
       item2:
         id: 10
         amount: 5
+      item3:
+        special: PoisonStaff
     potions:
       potion1:
         id: 1
         amount: 10
-    
-    
+  kit2:
+    name: Kit 1
+    description: Premier kit
+    price: 100
+    ranklevel: 1
+    invSlot: 3
+    logoItem:
+      id: 313
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    helmet:
+      id: 310
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    chestplate:
+      id: 311
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    leggings:
+      id: 312
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    boots:
+      id: 313
+      enchants:
+        enchant1:
+          effect: PROTECTION_ENVIRONMENTAL
+          level: 5
+        enchant2:
+          effect: DURABILITY
+          level: 2
+    items:
+      item1:
+        id: 5
+        amount: 10
+      item2:
+        id: 10
+        amount: 5
+      item3:
+        special: IncendiaryBomb
+    potions:
+      potion1:
+        id: 1
+        amount: 10
+nonkititems:
+  item1:
+    id: 35
+    name: test
+    description: test
+    invSlot: 1
+    data: 2
