@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.minecraft.server.v1_8_R2.InventoryHorseChest;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -30,6 +31,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import fr.moderncraft.inventory.Kit;
 import fr.moderncraft.utils.FireworkEffectPlayer;
@@ -87,9 +93,11 @@ public class Plugin_Listener implements Listener {
 	public void onPlayerKilled(EntityDeathEvent e) {
 		if (e.getEntity() instanceof Player) {
 			Player p = (Player) e.getEntity();
+			main.getSql().playerKilled(p);
 			if (e.getEntity().getKiller() instanceof Player) {
 				Player killer = (Player) e.getEntity().getKiller();
 				killer.setHealth(killer.getHealth() + 8);
+				addKill(killer);
 			}
 		}
 	}
@@ -97,9 +105,7 @@ public class Plugin_Listener implements Listener {
 	@EventHandler
 	public void onPlayerRespawn(PlayerRespawnEvent e){
 		Player player = e.getPlayer();
-		player.teleport(player.getLocation().getWorld().getSpawnLocation());
-		clearInventory(player);
-		player.getInventory().addItem(main.getConfiguration().getKitItem());
+		initPlayer(player);
 	}
 	
 	@EventHandler
@@ -135,6 +141,28 @@ public class Plugin_Listener implements Listener {
 			}
 		}
 	}
+	
+	private void initPlayer(Player p){
+		clearInventory(p);
+		p.teleport(p.getLocation().getWorld().getSpawnLocation());
+		p.getInventory().addItem(main.getConfiguration().getKitItem());
+		p.setScoreboard(createScoreBoard());
+	}
+	
+	private Scoreboard createScoreBoard(){
+		ScoreboardManager manager =  Bukkit.getScoreboardManager();
+		Scoreboard board = manager.getNewScoreboard();
+		
+		Objective life = board.registerNewObjective("life", "Health");
+		life.setDisplaySlot(DisplaySlot.BELOW_NAME);
+		life.setDisplayName("/ 20");
+		
+		Objective kills = board.registerNewObjective("stats", "dummy");
+		Score sc = kills.getScore("kills");
+		sc.setScore(0);
+		
+		return board;
+	}
 
 	private void clearInventory(Player p) {
 		p.getInventory().clear();
@@ -143,6 +171,13 @@ public class Plugin_Listener implements Listener {
 		{
 		    p.removePotionEffect(effect.getType());
 		}
+	}
+	
+	private void addKill(Player p){
+		Scoreboard scoreb = p.getScoreboard();
+		Score sc = scoreb.getObjective("stats").getScore("kills");
+		sc.setScore(sc.getScore()+1);
+		p.setScoreboard(scoreb);
 	}
 
 }

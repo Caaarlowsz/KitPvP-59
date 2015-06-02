@@ -3,4 +3,20 @@ main: fr.moderncraft.main.Main
 version: 1.0
 commands:
   kitpvp:
-    description: efzfzefz
+permissions:
+  kitpvp.*:
+  	description: Donne acces à toutes les commandes du kitpvp
+  	default: op
+  	children:
+  	  kitpvp.member:
+  	  kitpvp.vip:
+  	  kitpvp.vipp:
+  kitpvp.member:
+  	description: Donne acces aux kits membres
+  	default: true
+  kitpvp.vip:
+  	description: Donne acces aux kits vip
+  	default: op
+  kitpvp.vipp:
+  	description: Donne acces aux kits vip+
+  	default: op
